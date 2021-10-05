@@ -21,9 +21,8 @@ class UsersRepository:
         self.__session = session
 
     def get_all(self):
-        result = self.__session.execute(text("select * from users;"))
-        for row in result:
-            print(row)
+        for class_instance in self.__session.query(Users).all():
+            print(class_instance)
 
     def delete_user_by_email(self, email: str):
         result = self.__session.query(Users).filter_by(email=email).first()
